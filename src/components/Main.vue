@@ -6,6 +6,7 @@
                   <li><strong>Titolo:</strong> {{film.title}}</li>
                   <li><strong>Titolo originale:</strong> {{film.original_title}}</li>
                   <li><strong>Lingua:</strong> {{film.original_language}}</li>
+                  <li><strong>Lingua:</strong> <img :src="require(`film.original_language`)" alt=""></li>
                   <li><strong>Voto:</strong> {{film.vote_average}}</li>
               </ul>
           </div>
@@ -37,19 +38,29 @@ export default {
     },
     methods : {
         prova() {
-
             // Make a request for a user with a given ID
             axios.get('https://api.themoviedb.org/3/search/movie', {
                 params: {
                     api_key : `2ed0249aa6ee03db6e9668a23c21f493`,
-                    query : this.ricerca,
+                    query : `hey`,
                     language : `it-IT`,
                 }
             })
             .then(response => {
                 // handle success
                 console.log(response.data.results);
+
+                response.data.results.forEach(element => {
+                    if(element.original_language === `it`) {
+                    element.original_language = `@/assets/it.png`
+                }
+                else if(element.original_language === `en`) {
+                    element.original_language = `@/assets/en.png`
+                }
+                });
+
                 this.films = response.data.results;
+
             })
             .catch(function (error) {
                 // handle error
