@@ -7,7 +7,8 @@
       <div class="search">
           <input v-model="film" type="text" placeholder="Titoli, persone, generi...">
           <!-- COLLEGAMENTO $EMIT -->
-          <button @click="$emit(`prova`, film), delete_space()">Cerca</button>
+          <button @click="$emit(`filmCercato`, film)">Cerca</button>
+          <button @click="$emit(`resetFilm`, contatore_reset), delete_space()">Reset</button>
       </div>
 
       <div class="logIn">
@@ -23,6 +24,7 @@ export default {
     data() {
         return {
             film : ``,
+            contatore_reset : 0,
         }
     },
 

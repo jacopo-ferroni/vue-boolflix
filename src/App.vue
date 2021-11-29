@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <!-- L'HEADER PASSA L'$EMIT ALL'APP.VUE -->
-    <Header @prova="ricercaFilm"/>
+    <Header @filmCercato="ricercaFilm" @resetFilm="resetListaFilm" />
     <Main 
-    :contatore = indice_click_ricerca 
+    :contatore = indice_click_ricerca
     :ricerca = nome_film_da_cercare
     />
     <Footer />
@@ -31,14 +31,17 @@ export default {
   methods : {
     ricercaFilm(search) {
       if(search !== ``) {
-        console.log(search);
-        this.indice_click_ricerca++;
+        this.indice_click_ricerca = 1;
         this.nome_film_da_cercare = search;
       }
       else {
         this.indice_click_ricerca = 0;
-        this.nome_film_da_cercare = ``;
       }
+    },
+
+    resetListaFilm(contatore) {
+      this.indice_click_ricerca = contatore;
+      this.nome_film_da_cercare = ``;
     }
   }
 }

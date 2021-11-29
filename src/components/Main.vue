@@ -29,7 +29,7 @@ export default {
     },
     data() {
         return {
-            films : [],
+            films : null,
         }
     },
     created() {
@@ -46,9 +46,10 @@ export default {
                     language : `it-IT`,
                 }
             })
-            .then((response) => {
+            .then(response => {
                 // handle success
-                console.log(response);
+                console.log(response.data.results);
+                this.films = response.data.results;
             })
             .catch(function (error) {
                 // handle error
@@ -67,11 +68,10 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 100%;
+        padding: 20px 0;
         .container {
             border: 2px solid grey;
             width: 1200px;
-            height: 90%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -80,6 +80,7 @@ export default {
                 justify-content: center;
                 flex-direction: column;
                 align-items: center;
+                padding: 150px 0;
                 i {
                     font-size: 40px;
                     animation: colora 4s infinite;
