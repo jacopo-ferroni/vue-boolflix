@@ -3,11 +3,20 @@
       <div class="container">
           <div class="content" v-if="contatore > 0">
               <ul v-for="(film, index) in films" :key="`film-${index}`">
+                  <li><img :src="`https://image.tmdb.org/t/p/w92/${film.poster_path}`" alt=""></li>
                   <li><strong>Titolo:</strong> {{film.title}}</li>
                   <li><strong>Titolo originale:</strong> {{film.original_title}}</li>
-                  <li><strong>Lingua:</strong> {{film.original_language}}</li>
-                  <li><strong>Lingua:</strong> <img :src="film.original_language" alt=""></li>
+                  <li v-if="flagResult == false"><strong>Lingua:</strong> {{film.original_language}}</li>
+                  <li v-else class="flagStyle"><strong>Lingua:</strong> <img :src="film.original_language" alt=""></li>
                   <li><strong>Voto:</strong> {{film.vote_average}}</li>
+              </ul>
+              <ul v-for="(serie, index) in series" :key="`film-${index}`">
+                  <li><img :src="`https://image.tmdb.org/t/p/w92/${serie.poster_path}`" alt=""></li>
+                  <li><strong>Titolo:</strong> {{serie.title}}</li>
+                  <li><strong>Titolo originale:</strong> {{serie.original_title}}</li>
+                  <li v-if="flagResult == false"><strong>Lingua:</strong> {{serie.original_language}}</li>
+                  <li v-else class="flagStyle"><strong>Lingua:</strong> <img :src="serie.original_language" alt=""></li>
+                  <li><strong>Voto:</strong> {{serie.vote_average}}</li>
               </ul>
           </div>
           <!-- CARICAMENTO IN CASO DI MANCATO CONTENUTO -->
@@ -20,57 +29,15 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
     name : `Main`,
     props : {
+        films : Array,
+        series : Array,
         contatore : Number,
-        ricerca : String,
+        flagResult : Boolean,
     },
-    data() {
-        return {
-            films : null,
-        }
-    },
-    created() {
-        this.prova();
-    },
-    methods : {
-        prova() {
-            // Make a request for a user with a given ID
-            axios.get('https://api.themoviedb.org/3/search/movie', {
-                params: {
-                    api_key : `2ed0249aa6ee03db6e9668a23c21f493`,
-                    query : this.ricerca,
-                    language : `it-IT`,
-                }
-            })
-            .then(response => {
-                // handle success
-                console.log(response.data.results);
-
-                response.data.results.forEach(element => {
-                    if(element.original_language === `it`) {
-                    element.original_language = `require('@/assets/en.png')`
-                }
-                else if(element.original_language === `en`) {
-                    element.original_language = `require('@/assets/en.png')`
-                }
-                });
-
-                this.films = response.data.results;
-
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .then(function () {
-                // always executed
-            });
-        }
-    }
 }
 </script>
 
@@ -118,6 +85,7 @@ export default {
                 align-items: center;
                 ul {
                     padding: 30px;
+                    list-style: none;
                 }
             }
         }

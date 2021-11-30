@@ -5,7 +5,7 @@
       </div>
 
       <div class="search">
-          <input v-model="film" type="text" placeholder="Titoli, persone, generi...">
+          <input @keyup.enter="$emit(`filmCercato`, film)" v-model="film" type="text" placeholder="Titoli, persone, generi...">
           <!-- COLLEGAMENTO $EMIT -->
           <button @click="$emit(`filmCercato`, film)">Cerca</button>
           <button @click="$emit(`resetFilm`, contatore_reset), delete_space()">Reset</button>

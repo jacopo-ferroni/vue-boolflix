@@ -1,11 +1,8 @@
 <template>
   <div id="app">
     <!-- L'HEADER PASSA L'$EMIT ALL'APP.VUE -->
-    <Header @filmCercato="ricercaFilm" @resetFilm="resetListaFilm" />
-    <Main 
-    :contatore = indice_click_ricerca
-    :ricerca = nome_film_da_cercare
-    />
+    <Header @filmCercato="ricercaFilmeSerie" @resetFilm="resetListaFilm" />
+    <Main :contatore = counter_click :films = films_array :series = series_array :flagResults = flag />
     <Footer />
   </div>
 </template>
@@ -14,6 +11,7 @@
 import Header from '@/components/Header.vue'
 import Main from '@/components/Main.vue'
 import Footer from '@/components/Footer.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
@@ -24,39 +22,115 @@ export default {
   },
   data() {
     return {
-      indice_click_ricerca : 0,
-      nome_film_da_cercare : ``,
+      counter_click : 0,
+      films_array : null,
+      series_array : null,
+      flag : false,
     }
   },
   methods : {
-    ricercaFilm(search) {
-      if(search !== ``) {
-        this.indice_click_ricerca = 1;
-        this.nome_film_da_cercare = search;
-      }
-      else {
-        this.indice_click_ricerca = 0;
+
+    ricercaFilmeSerie(search) {
+      console.log(search);
+      if (search !== ``) {
+        this.counter_click = 1;
+        axios.get('https://api.themoviedb.org/3/search/movie?', {
+          params : {
+            api_key : `2ed0249aa6ee03db6e9668a23c21f493`,
+            query : search,
+            language : `it-IT`,
+          }
+        })
+          .then((response) => {
+           /* RICERCA FILM */
+          // handle success
+          console.log(response.data.results);
+          this.films_array = response.data.results
+          this.films_array.forEach(element => {
+            console.log(element.original_language);
+            /* RICERCA FILM */
+            if (element.original_language === `en`) {
+              /* Mancano i require */
+              element.original_language = require(`@/assets/en.png`);
+              element.flag = true;
+            }
+            else if (element.original_language === `it`) {
+              /* mancano i require */
+              element.original_language = require(`@/assets/it.png`);
+              this.flag = true;
+            }
+            else {
+              this.flag = false;
+            }
+          });
+          })
+          .catch(function (error) {
+          // handle error
+          console.log(error);
+          })
+          .then(function () {
+          // always executed
+          });
+
+        /* RICERCA SERIE */
+        axios.get('https://api.themoviedb.org/3/search/tv?', {
+          params : {
+            api_key : `2ed0249aa6ee03db6e9668a23c21f493`,
+            query : search,
+            language : `it-IT`,
+          }
+        })
+          .then((response) => {
+          // handle success
+          console.log(response.data.results);
+          this.series_array = response.data.results
+          this.series_array.forEach(element => {
+            console.log(element.original_language);
+            if (element.original_language === `en`) {
+              /* Mancano i require */
+              element.original_language = require(`@/assets/en.png`);
+              element.flag = true;
+            }
+            else if (element.original_language === `it`) {
+              /* mancano i require */
+              element.original_language = require(`@/assets/it.png`);
+              this.flag = true;
+            }
+            else {
+              this.flag = false;
+            }
+          });
+          })
+          .catch(function (error) {
+          // handle error
+          console.log(error);
+          })
+          .then(function () {
+          // always executed
+          });
       }
     },
 
-    resetListaFilm(contatore) {
-      this.indice_click_ricerca = contatore;
-      this.nome_film_da_cercare = ``;
+    resetListaFilm(contatoreReset) {
+      console.log(contatoreReset);
+      this.counter_click = 0;
     }
+
   }
+  
 }
 </script>
 
 <style lang="scss">
-* {
-  margin: 0%;
-  padding: 0%;
-  box-sizing: border-box;
-  font-family: 'Be Vietnam Pro', sans-serif;
-  font-family: 'Lato', sans-serif;
-}
+  * {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-family: 'Lato', sans-serif;
+  }
 
-#app {
-  height: 100vh;
-}
+  #app {
+    height: 100vh;
+  }
 </style>
