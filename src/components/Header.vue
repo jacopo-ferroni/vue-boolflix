@@ -2,18 +2,23 @@
   <div class="header">
       <div class="brand">
           <h1>BOOLFLIX</h1>
+          <a href="#">Home</a>
+          <a href="#">Serie TV</a>
+          <a href="#">Film</a>
+          <a href="#">Nuovi e popolari</a>
+          <a href="#">La mia lista</a>
       </div>
 
       <div class="search">
           <input @keyup.enter="$emit(`filmCercato`, film)" v-model="film" type="text" placeholder="Titoli, persone, generi...">
           <!-- COLLEGAMENTO $EMIT -->
-          <button @click="$emit(`filmCercato`, film)">Cerca</button>
-          <button @click="$emit(`resetFilm`, contatore_reset), delete_space()">Reset</button>
+          <div class="button" @click="$emit(`filmCercato`, film)">Cerca</div>
+          <div class="button" @click="$emit(`resetFilm`, contatore_reset), delete_space()">Reset</div>
       </div>
 
       <div class="logIn">
-          <button>Iscriviti</button>
-          <button>Accedi</button>
+          <div class="button">Iscriviti</div>
+          <div class="button">Accedi</div>
       </div>
   </div>
 </template>
@@ -42,43 +47,52 @@ export default {
 
 <style scoped lang="scss">
     .header {
-        background-color: #e50914;
+        background-color: #373333;
         display: flex;
         align-items: center;
         justify-content: space-between;
         .brand {
-            color: white;
+            color: #e50914;
             padding: 20px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            a {
+                text-decoration: none;
+                color: white;
+                font-size: 10px;
+                margin: 0 5px;
+            }
         }
         .logIn {
             padding: 20px;
-            button {
-                padding: 10px;
-                background-color: white;
-                border-radius: 20px;
+            display: flex;
+            .button {
+                color: white;
                 cursor: pointer;
                 margin: 0 5px;
-                &:hover {
-                    background-color: black;
-                    color: white;
-                }
+                font-size: 10px;
             }
         }
         .search {
+            display: flex;
+            align-items: center;
             input {
                 padding: 10px;
                 width: 300px;
-                border-radius: 20px;
-                border: 2px solid black;
+                border: .5px solid white;
+                background-color: black;
             }
-            button {
-                padding: 7px;
-                background-color: white;
+            input[placeholder] {
+                color: white;
+            }
+            .button {
+                color: white;
                 border: 2px solid wjite;
                 border-radius: 20px;
                 margin-left: 10px;
                 cursor: pointer;
+                font-size: 10px;
             }
         }
     }

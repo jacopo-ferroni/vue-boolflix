@@ -3,20 +3,25 @@
       <div class="container">
           <div class="content" v-if="contatore > 0">
               <ul v-for="(film, index) in films" :key="`film-${index}`">
-                  <li><img :src="`https://image.tmdb.org/t/p/w92/${film.poster_path}`" alt=""></li>
-                  <li><strong>Titolo:</strong> {{film.title}}</li>
-                  <li><strong>Titolo originale:</strong> {{film.original_title}}</li>
-                  <li v-if="flagResult == false"><strong>Lingua:</strong> {{film.original_language}}</li>
-                  <li v-else class="flagStyle"><strong>Lingua:</strong> <img :src="film.original_language" alt=""></li>
-                  <li><strong>Voto:</strong> {{film.vote_average}}</li>
+                  <li><img :src="`https://image.tmdb.org/t/p/w185/${film.poster_path}`" alt=""></li>
+                  <div class="show">
+                    <li><strong>Titolo:</strong> {{film.title}}</li>
+                    <li><strong>Titolo originale:</strong> {{film.original_title}}</li>
+                    <li v-if="flagResult == false"><strong>Lingua:</strong> {{film.original_language}}</li>
+                    <li v-else class="flagStyle"><strong>Lingua:</strong> <img :src="film.original_language" alt=""></li>
+                    <li><strong>Voto:</strong> {{film.vote_average}}</li>
+                  </div>
+                  <div class="opacity"></div>
               </ul>
               <ul v-for="(serie, index) in series" :key="`film-${index}`">
-                  <li><img :src="`https://image.tmdb.org/t/p/w92/${serie.poster_path}`" alt=""></li>
-                  <li><strong>Titolo:</strong> {{serie.title}}</li>
-                  <li><strong>Titolo originale:</strong> {{serie.original_title}}</li>
-                  <li v-if="flagResult == false"><strong>Lingua:</strong> {{serie.original_language}}</li>
-                  <li v-else class="flagStyle"><strong>Lingua:</strong> <img :src="serie.original_language" alt=""></li>
-                  <li><strong>Voto:</strong> {{serie.vote_average}}</li>
+                  <li><img :src="`https://image.tmdb.org/t/p/w185/${serie.poster_path}`" alt=""></li>
+                  <div class="show">
+                    <li><strong>Titolo:</strong> {{serie.title}}</li>
+                    <li><strong>Titolo originale:</strong> {{serie.original_title}}</li>
+                    <li v-if="flagResult == false"><strong>Lingua:</strong> {{serie.original_language}}</li>
+                    <li v-else class="flagStyle"><strong>Lingua:</strong> <img :src="serie.original_language" alt=""></li>
+                    <li><strong>Voto:</strong> {{serie.vote_average}}</li>
+                  </div>
               </ul>
           </div>
           <!-- CARICAMENTO IN CASO DI MANCATO CONTENUTO -->
@@ -47,12 +52,13 @@ export default {
         align-items: center;
         justify-content: center;
         padding: 20px 0;
+        background-color: #373333;
         .container {
-            border: 2px solid grey;
             width: 1200px;
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: #373333;
             .loading {
                 display: flex;
                 justify-content: center;
@@ -86,6 +92,43 @@ export default {
                 ul {
                     padding: 30px;
                     list-style: none;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 0%;
+                    margin: 10px;
+                    position: relative;
+                    border:1px solid white;
+                    &:hover .show {
+                        display: block;
+                    }
+                    &:hover .opacity {
+                        display: block;
+                    }
+                    .show {
+                        display: flex;
+                        position: absolute;
+                        color: white;
+                        flex-direction: column;
+                        align-items: center;
+                        display: none;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%,-50%);
+                        z-index: 1;
+                        width: 100%;
+                        font-size: 13px;
+                    }
+                .opacity {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0%;
+                    left: 0%;
+                    background-color: black;
+                    opacity: .6;
+                    display: none;
+                }
                 }
             }
         }

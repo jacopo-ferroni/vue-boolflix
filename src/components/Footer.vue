@@ -137,7 +137,7 @@ export default {
 
 <style scoped lang="scss">
     .footer {
-        background-color: #e50914;
+        background-color: #373333;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -148,9 +148,9 @@ export default {
             li {
                 padding: 1px 10px;
                 cursor: pointer;
-                color: white;
+                color: #676767;
                 &:hover {
-                    color: black;
+                    color: #e50914;
                 }
             }
         }

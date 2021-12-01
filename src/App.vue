@@ -51,12 +51,12 @@ export default {
             /* RICERCA FILM */
             if (element.original_language === `en`) {
               /* Mancano i require */
-              element.original_language = require(`@/assets/en.png`);
+              element.original_language = `en`;
               element.flag = true;
             }
             else if (element.original_language === `it`) {
               /* mancano i require */
-              element.original_language = require(`@/assets/it.png`);
+              element.original_language = `it`;
               this.flag = true;
             }
             else {
@@ -88,12 +88,12 @@ export default {
             console.log(element.original_language);
             if (element.original_language === `en`) {
               /* Mancano i require */
-              element.original_language = require(`@/assets/en.png`);
+              element.original_language = `en`;
               element.flag = true;
             }
             else if (element.original_language === `it`) {
               /* mancano i require */
-              element.original_language = require(`@/assets/it.png`);
+              element.original_language = `it`;
               this.flag = true;
             }
             else {
