@@ -44,10 +44,9 @@ export default {
           .then((response) => {
            /* RICERCA FILM */
           // handle success
-          console.log(response.data.results);
           this.films_array = response.data.results
           this.films_array.forEach(element => {
-            console.log(element.original_language);
+            element.vote_average = Math.floor(element.vote_average / 2);
             /* RICERCA FILM */
             if (element.original_language === `en`) {
               /* Mancano i require */
@@ -83,8 +82,8 @@ export default {
           .then((response) => {
           // handle success
           console.log(response.data.results);
-          this.series_array = response.data.results
           this.series_array.forEach(element => {
+            console.log(element.vote_average);
             console.log(element.original_language);
             if (element.original_language === `en`) {
               /* Mancano i require */
@@ -112,8 +111,7 @@ export default {
     },
 
     resetListaFilm(contatoreReset) {
-      console.log(contatoreReset);
-      this.counter_click = 0;
+      this.counter_click = contatoreReset;
     }
 
   }

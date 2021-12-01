@@ -10,10 +10,17 @@
                     <li v-if="flagResult == false"><strong>Lingua:</strong> {{film.original_language}}</li>
                     <li v-else class="flagStyle"><strong>Lingua:</strong> <img :src="film.original_language" alt=""></li>
                     <li><strong>Voto:</strong> {{film.vote_average}}</li>
+                    <li>
+                        <i :class = "{star : film.vote_average >= 1}"  class="fas fa-star"></i>
+                        <i :class = "{star : film.vote_average >= 2}" class="fas fa-star"></i>
+                        <i :class = "{star : film.vote_average >= 3}" class="fas fa-star"></i>
+                        <i :class = "{star : film.vote_average >= 4}" class="fas fa-star"></i>
+                        <i :class = "{star : film.vote_average >= 5}" class="fas fa-star"></i>
+                    </li>
                   </div>
                   <div class="opacity"></div>
               </ul>
-              <ul v-for="(serie, index) in series" :key="`film-${index}`">
+              <ul v-for="(serie, index) in series" :key="`serie-${index}`">
                   <li><img :src="`https://image.tmdb.org/t/p/w185/${serie.poster_path}`" alt=""></li>
                   <div class="show">
                     <li><strong>Titolo:</strong> {{serie.title}}</li>
@@ -118,6 +125,9 @@ export default {
                         z-index: 1;
                         width: 100%;
                         font-size: 13px;
+                        .star {
+                            color: yellow;
+                        }
                     }
                 .opacity {
                     width: 100%;
