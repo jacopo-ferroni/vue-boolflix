@@ -3,14 +3,15 @@
       <div class="container">
           <div class="content" v-if="contatore > 0">
               <ul v-for="(film, index) in films" :key="`film-${index}`">
-                  <li><img :src="`https://image.tmdb.org/t/p/w185/${film.poster_path}`" alt=""></li>
+                  <li><img :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" alt=""></li>
                   <div class="show">
-                    <li><strong>Titolo:</strong> {{film.title}}</li>
-                    <li><strong>Titolo originale:</strong> {{film.original_title}}</li>
-                    <li v-if="flagResult == false"><strong>Lingua:</strong> {{film.original_language}}</li>
-                    <li v-else class="flagStyle"><strong>Lingua:</strong> <img :src="film.original_language" alt=""></li>
-                    <li><strong>Voto:</strong> {{film.vote_average}}</li>
-                    <li>
+                    <li class="title"><strong>{{film.title}}</strong></li>
+                    <li class="title2"><strong class="td">Titolo originale:</strong> {{film.original_title}}</li>
+                    <li class="lang" v-if="flagResult == false"><strong class="td">Lingua:</strong> {{film.original_language}}</li>
+                    <li v-else class="flagStyle"><strong class="td">Lingua:</strong> <img :src="film.original_language" alt=""></li>
+                    <li class="description"><strong class="td">Descrizione:</strong> {{film.overview}}</li>
+                    <li class="voto"><strong class="td">Voto:</strong> {{film.vote_average}}</li>
+                    <li class="star_list">
                         <i :class = "{star : film.vote_average >= 1}"  class="fas fa-star"></i>
                         <i :class = "{star : film.vote_average >= 2}" class="fas fa-star"></i>
                         <i :class = "{star : film.vote_average >= 3}" class="fas fa-star"></i>
@@ -21,13 +22,21 @@
                   <div class="opacity"></div>
               </ul>
               <ul v-for="(serie, index) in series" :key="`serie-${index}`">
-                  <li><img :src="`https://image.tmdb.org/t/p/w185/${serie.poster_path}`" alt=""></li>
+                  <li><img :src="`https://image.tmdb.org/t/p/w342/${serie.poster_path}`" alt=""></li>
                   <div class="show">
-                    <li><strong>Titolo:</strong> {{serie.title}}</li>
-                    <li><strong>Titolo originale:</strong> {{serie.original_title}}</li>
-                    <li v-if="flagResult == false"><strong>Lingua:</strong> {{serie.original_language}}</li>
-                    <li v-else class="flagStyle"><strong>Lingua:</strong> <img :src="serie.original_language" alt=""></li>
-                    <li><strong>Voto:</strong> {{serie.vote_average}}</li>
+                    <li class="title"><strong>{{serie.title}}</strong></li>
+                    <li class="title2"><strong class="td">Titolo originale:</strong> {{serie.original_title}}</li>
+                    <li class="lang" v-if="flagResult == false"><strong class="td">Lingua:</strong> {{serie.original_language}}</li>
+                    <li v-else class="flagStyle"><strong class="td">Lingua:</strong> <img :src="serie.original_language" alt=""></li>
+                    <li class="description"><strong class="td">Descrizione:</strong> {{serie.overview}}</li>
+                    <li class="voto"><strong class="td">Voto:</strong> {{serie.vote_average}}</li>
+                    <li class="star_list">
+                        <i :class = "{star : film.vote_average >= 1}"  class="fas fa-star"></i>
+                        <i :class = "{star : film.vote_average >= 2}" class="fas fa-star"></i>
+                        <i :class = "{star : film.vote_average >= 3}" class="fas fa-star"></i>
+                        <i :class = "{star : film.vote_average >= 4}" class="fas fa-star"></i>
+                        <i :class = "{star : film.vote_average >= 5}" class="fas fa-star"></i>
+                    </li>
                   </div>
               </ul>
           </div>
@@ -102,7 +111,7 @@ export default {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    padding: 0%;
+                    padding: 3px;
                     margin: 10px;
                     position: relative;
                     border:1px solid white;
@@ -123,10 +132,30 @@ export default {
                         top: 50%;
                         transform: translate(-50%,-50%);
                         z-index: 1;
-                        width: 100%;
+                        width: 80%;
                         font-size: 13px;
+                        margin: 0 5px;
                         .star {
                             color: yellow;
+                        }
+                        .title {
+                            font-size: 25px;
+                            padding-bottom: 10px;
+                        }
+                        .title2 {
+                            padding-bottom: 5px;
+                        }
+                        .lang {
+                            padding-bottom: 5px;
+                        }
+                        .description {
+                            padding-bottom: 5px;
+                        }
+                        .voto {
+                            padding-bottom: 5px;
+                        }
+                        .td {
+                            color: #e50914;
                         }
                     }
                 .opacity {
