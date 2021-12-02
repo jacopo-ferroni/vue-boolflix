@@ -1,7 +1,9 @@
 <template>
   <div class="header">
       <div class="brand">
-          <h1>BOOLFLIX</h1>
+          <div class="logo">
+            <h1>BOOLFLIX</h1>
+          </div>
           <a href="#">Home</a>
           <a href="#">Serie TV</a>
           <a href="#">Film</a>
@@ -52,16 +54,26 @@ export default {
         align-items: center;
         justify-content: space-between;
         .brand {
-            color: #e50914;
             padding: 20px;
-            cursor: pointer;
             display: flex;
             align-items: center;
+            h1 {
+                cursor: pointer;
+                color: white;
+                transition: .5s;
+                &:hover {
+                    color: #e50914;
+                }
+            }
             a {
+                cursor: pointer;
                 text-decoration: none;
                 color: white;
                 font-size: 10px;
                 margin: 0 5px;
+                &:hover {
+                    color: #e50914;
+                }
             }
         }
         .logIn {
@@ -72,6 +84,9 @@ export default {
                 cursor: pointer;
                 margin: 0 5px;
                 font-size: 10px;
+                &:hover {
+                    color: #e50914;
+                }
             }
         }
         .search {
@@ -93,6 +108,9 @@ export default {
                 margin-left: 10px;
                 cursor: pointer;
                 font-size: 10px;
+                &:hover {
+                    color: #e50914;
+                }
             }
         }
     }
