@@ -64,6 +64,8 @@ export default {
 
 <style scoped lang="scss">
     .main {
+        position: relative;
+        z-index: 0;
         display: flex;
         align-items: center;
         justify-content: center;
