@@ -1,52 +1,52 @@
 <template>
-  <div class="main">
-      <div class="container">
-          <div class="content" v-if="contatore > 0">
-              <ul v-for="(film, index) in films" :key="`film-${index}`">
-                  <li><img :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" alt=""></li>
-                  <div class="show">
-                    <li class="title"><strong>{{film.title}}</strong></li>
-                    <li class="title2"><strong class="td">Titolo originale:</strong> {{film.original_title}}</li>
-                    <li class="lang" v-if="flagResult == false"><strong class="td">Lingua:</strong> {{film.original_language}}</li>
-                    <li v-else class="flagStyle"><strong class="td">Lingua:</strong> <img :src="film.original_language" alt=""></li>
-                    <li class="description"><strong class="td">Descrizione:</strong> {{film.overview}}</li>
-                    <li class="voto"><strong class="td">Voto:</strong> {{film.vote_average}}</li>
-                    <li class="star_list">
-                        <i :class = "{star : film.vote_average >= 1}"  class="fas fa-star"></i>
-                        <i :class = "{star : film.vote_average >= 2}" class="fas fa-star"></i>
-                        <i :class = "{star : film.vote_average >= 3}" class="fas fa-star"></i>
-                        <i :class = "{star : film.vote_average >= 4}" class="fas fa-star"></i>
-                        <i :class = "{star : film.vote_average >= 5}" class="fas fa-star"></i>
-                    </li>
-                  </div>
-                  <div class="opacity"></div>
-              </ul>
-              <ul v-for="(serie, index) in series" :key="`serie-${index}`">
-                  <li><img :src="`https://image.tmdb.org/t/p/w342/${serie.poster_path}`" alt=""></li>
-                  <div class="show">
-                    <li class="title"><strong>{{serie.title}}</strong></li>
-                    <li class="title2"><strong class="td">Titolo originale:</strong> {{serie.original_title}}</li>
-                    <li class="lang" v-if="flagResult == false"><strong class="td">Lingua:</strong> {{serie.original_language}}</li>
-                    <li v-else class="flagStyle"><strong class="td">Lingua:</strong> <img :src="serie.original_language" alt=""></li>
-                    <li class="description"><strong class="td">Descrizione:</strong> {{serie.overview}}</li>
-                    <li class="voto"><strong class="td">Voto:</strong> {{serie.vote_average}}</li>
-                    <li class="star_list">
-                        <i :class = "{star : film.vote_average >= 1}"  class="fas fa-star"></i>
-                        <i :class = "{star : film.vote_average >= 2}" class="fas fa-star"></i>
-                        <i :class = "{star : film.vote_average >= 3}" class="fas fa-star"></i>
-                        <i :class = "{star : film.vote_average >= 4}" class="fas fa-star"></i>
-                        <i :class = "{star : film.vote_average >= 5}" class="fas fa-star"></i>
-                    </li>
-                  </div>
-              </ul>
-          </div>
+    <div class="main">
+        <div class="container">
+            <div class="content" v-if="contatore > 0">
+                <ul v-for="(film, index) in films" :key="`film-${index}`">
+                    <li><img :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" alt=""></li>
+                    <div class="show">
+                        <li class="title"><strong>{{film.title}}</strong></li>
+                        <li class="title2"><strong class="td">Titolo originale:</strong> {{film.original_title}}</li>
+                        <li class="lang" v-if="flagResult == false"><strong class="td">Lingua:</strong> {{film.original_language}}</li>
+                        <li v-else class="flagStyle"><strong class="td">Lingua:</strong> <img :src="film.original_language" alt=""></li>
+                        <li class="description"><strong class="td">Descrizione:</strong> {{film.overview}}</li>
+                        <li class="voto"><strong class="td">Voto:</strong> {{film.vote_average}}</li>
+                        <li class="star_list">
+                            <i :class = "{star : film.vote_average >= 1}"  class="fas fa-star"></i>
+                            <i :class = "{star : film.vote_average >= 2}" class="fas fa-star"></i>
+                            <i :class = "{star : film.vote_average >= 3}" class="fas fa-star"></i>
+                            <i :class = "{star : film.vote_average >= 4}" class="fas fa-star"></i>
+                            <i :class = "{star : film.vote_average >= 5}" class="fas fa-star"></i>
+                        </li>
+                    </div>
+                    <div class="opacity"></div>
+                </ul>
+                <ul v-for="(serie, index) in series" :key="`serie-${index}`">
+                    <li><img :src="`https://image.tmdb.org/t/p/w342/${serie.poster_path}`" alt=""></li>
+                    <div class="show">
+                        <li class="title"><strong>{{serie.title}}</strong></li>
+                        <li class="title2"><strong class="td">Titolo originale:</strong> {{serie.original_title}}</li>
+                        <li class="lang" v-if="flagResult == false"><strong class="td">Lingua:</strong> {{serie.original_language}}</li>
+                        <li v-else class="flagStyle"><strong class="td">Lingua:</strong> <img :src="serie.original_language" alt=""></li>
+                        <li class="description"><strong class="td">Descrizione:</strong> {{serie.overview}}</li>
+                        <li class="voto"><strong class="td">Voto:</strong> {{serie.vote_average}}</li>
+                        <li class="star_list">
+                            <i :class = "{star : film.vote_average >= 1}"  class="fas fa-star"></i>
+                            <i :class = "{star : film.vote_average >= 2}" class="fas fa-star"></i>
+                            <i :class = "{star : film.vote_average >= 3}" class="fas fa-star"></i>
+                            <i :class = "{star : film.vote_average >= 4}" class="fas fa-star"></i>
+                            <i :class = "{star : film.vote_average >= 5}" class="fas fa-star"></i>
+                        </li>
+                    </div>
+                </ul>
+            </div>
           <!-- CARICAMENTO IN CASO DI MANCATO CONTENUTO -->
-          <div class="loading" v-else>
-              <h1>In Attesa di Ricerca...</h1>
-              <i class="fas fa-poo-storm"></i>
-          </div>
-      </div>
-  </div>
+            <div class="loading" v-else>
+                <h1>In Attesa di Ricerca...</h1>
+                <i class="fas fa-poo-storm"></i>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -70,6 +70,7 @@ export default {
         padding: 20px 0;
         background-color: #373333;
         .container {
+            margin-top: 70px;
             width: 1200px;
             display: flex;
             align-items: center;

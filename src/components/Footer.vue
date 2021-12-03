@@ -142,8 +142,11 @@ export default {
         justify-content: space-between;
         align-items: center;
         padding: 20px;
+        .contact {
+            display: flex;
+            justify-content: space-between;
+        }
         ul {
-            display: inline-block;
             list-style: none;
             li {
                 padding: 1px 10px;

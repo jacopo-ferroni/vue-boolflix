@@ -49,6 +49,9 @@ export default {
 
 <style scoped lang="scss">
     .header {
+        width: 100%;
+        position: fixed;
+        z-index: 1;
         background-color: #373333;
         display: flex;
         align-items: center;
